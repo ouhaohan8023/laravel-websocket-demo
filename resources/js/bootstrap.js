@@ -27,9 +27,5 @@ window.Echo = new Echo({
     wsPort: 6001,
     forceTLS: false,
     disableStats: true,
+    authEndpoint: '/custom/endpoint/auth'
 });
-
-window.Echo.channel('test-event')
-    .listen('EchoTest', (e) => {
-        console.log(e);
-    });

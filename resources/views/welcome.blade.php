@@ -25,7 +25,7 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 
@@ -132,12 +132,17 @@
         <script src="{{asset("js/app.js")}}"></script>
 
         <script>
-            //Pusher.logToConsole = true;
-            // Echo.channel('echoTest')
-            //     .listen('.server.created', (e) => {
-            //         console.log('triggered');
-            //         console.log(e);
-            //     });
+            Echo.private('channel-name.1')
+                .listen('.server.created', (e) => {
+                    console.log("channel 1");
+                    console.log(e);
+                });
+            Echo.channel('channel-name.2')
+                .listen('.server.created', (e) => {
+                    console.log("channel 2");
+                    console.log(e);
+                });
+
         </script>
         <!-- receive notifications -->
     </body>

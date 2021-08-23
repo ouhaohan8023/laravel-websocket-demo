@@ -14,16 +14,16 @@ class EchoTest implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $msg;
+    public $id;
 
     /**
      * Create a new event instance.
      *
      * @param $msg
      */
-    public function __construct($msg)
+    public function __construct($id)
     {
-        $this->msg = $msg;
+        $this->id = $id;
     }
 
     /**
@@ -33,20 +33,20 @@ class EchoTest implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-//        return new PrivateChannel('channel-name');
-        return new Channel('test-event');
+        return new PrivateChannel('channel-name.'.$this->id);
+//        return new Channel('test-event');
     }
 
-//    public function broadcastAs()
-//    {
-//        return 'server.created';
-//    }
+    public function broadcastAs()
+    {
+        return 'server.created';
+    }
 
     public function broadcastWith()
     {
         return [
             'time' => time(),
-            "pp" => $this->msg
+            "pp" => $this->id
         ];
     }
 }

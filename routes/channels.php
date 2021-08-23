@@ -19,3 +19,8 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 //Broadcast::channel('echoTest', function () {
 //    return true;
 //});
+
+Broadcast::channel('channel-name.1', function ($user) {
+    return true;
+//    return $user->id === Order::findOrNew($orderId)->user_id;
+});
